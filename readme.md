@@ -47,3 +47,16 @@ This project consists of two parts:
                 - 2nd dimension contains the id of the plate the element refers to as well as at element's x,y,z coordinates
     3) Integrate by summation
         - ![V = -\int_{+}^{-} \overrightarrow{E}*d\overrightarrow{l} = \int d\overrightarrow{l} * \int \rho(\overrightarrow{r}') * \frac{(\overrightarrow{r} - \overrightarrow{r}')}{|(\overrightarrow{r} - \overrightarrow{r}')|^3} * d\tau'  \propto Q](https://cloud.githubusercontent.com/assets/10381896/25315834/c2687750-2829-11e7-9740-15bf097ded52.gif)
+            1) calculate electric field at any point
+            2) plot electric fields and capacitor to verify that electric fields are calculated properly
+            3) calculate E dot dl along a path between any two points on the edges of each capacitor
+    4) Relate potential to capacitance by C = Q/V and Q = integral rho * dtau
+2) Statistically analyze Voltage along paths between plates, calculate average capacitance, and calculate confidence in average capacitance
+    1) Define statistical analysis methods to calculate average and variance
+    2) Analyze potential difference between the two plates
+        - test that potential between any two points is equivalent in the ideal case
+        - demonstrate that potential is no longer equivilent when d ~ sqrt(A)
+        - demonstrate that the variance in potential rises as d approaches sqrt(A)
+    3) Assume that the error in capacitance is related to the variance of voltage 
+        - demonstrate that as the variance of voltage increases the deviation from known finite case solutions increases
+    

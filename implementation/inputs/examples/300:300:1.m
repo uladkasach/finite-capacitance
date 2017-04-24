@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%
 Lx = 0.5; %%  50 cm
 Ly = 0.5;
-Lz = 0.002;
+Lz = 0.004;
 
 %%%%%%%%%%%%%%%%%%%
 %% Define number of elements per dimension
@@ -22,3 +22,9 @@ plate_lz = 0; %% 0 results in a 1 element thick plate
 plate_seperation = 0.001; %% 
 parallel_plates= true;
     
+%%%%%%%%%%%%%%%%%%%%%
+%% Plot Field Option
+%%%%%%%%%%%%%%%%%%%%%
+opt_plot_field = true;
+field_plot_too_close_range = 30; 
+vectors_in_electric_field_plot = 1000;

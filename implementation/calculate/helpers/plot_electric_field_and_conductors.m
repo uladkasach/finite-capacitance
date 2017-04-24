@@ -11,7 +11,9 @@ function plot_electric_field_and_conductors(vectors_in_electric_field_plot, fiel
         this_x = randperm(Nx,1);
         this_y = randperm(Ny,1);
         
-        %% select a z value which is not within 'too close' range
+        %% select a z value which is not within 'too close' range, 
+        %%          if z is allowed to be too close - only one "infinitly large" vector is displayed in most results, 
+        %%          the one that is closest to a plate, which hides the rest of the vectors due to the relative magnitudes 
         too_close = true;
         while(too_close)
             this_z = randperm(Nz,1);
