@@ -20,13 +20,24 @@ This project consists of two parts:
 1) Calculate capacitance along one path between plates
     - e.g., capacitance at the edge of a capacitor may be different from capacitance at the center of the capacitor
     - i.e., when making an assumption of the charge density, we may be inaccurate resulting in a varying potential difference along a path between the two plates, resulting in a different capacitance.
-    - Test: ensure that capacitance at center of plate is (e_0)*A/d
+    - Test:
+        - plot field lines to ensure E is being calculated correctly - completed - ![image](https://cloud.githubusercontent.com/assets/10381896/25362985/4e333576-2925-11e7-8cae-a1bec4309362.png)
+        - ensure that capacitance at center of plate is (e_0)*A/d
 2) Average the capacitance along all paths between plates to determine total capacitance 
     - calculate capacitance everywhere and then average it
-    - Test: ensure that capacitance for case d << sqrt(A) is (e_0)*A/d
+    - Test: 
+        - ensure that capacitance for case d << sqrt(A) is (e_0)*A/d
+    - Evaluation: 
+        - demonstrate that potential is no longer equivilent when d ~ sqrt(A)
+        - demonstrate that the variance in potential rises as d approaches sqrt(A)
+        - evaluate assumption that the error in capacitance is related to the variance of voltage 
+            - demonstrate that as the variance of voltage increases the deviation from known finite case solutions increases
 3) Attempt to determine charge density by solving C.S.P
-    - V(top) = V+
-    - V(bottom) = V-
+    - Boundary Constraints: V(top) = V+, V(bottom) = V-
+    - Idea: minimizing variance of voltage across the top plate by all paths from bottom to top will increase accuracy of model
+        - use optimization functions to solve this problem, with variables being charge densities at each position
+        - employ huristics / domain knowledge to initialize the state with likely configurations
+            - e.g., charges tend to aggregate at sharp points and at edgesf
     
 ### Implementation:
 1) Calculate Capacitance along one path
@@ -52,11 +63,8 @@ This project consists of two parts:
             3) calculate E dot dl along a path between any two points on the edges of each capacitor
     4) Relate potential to capacitance by C = Q/V and Q = integral rho * dtau
 2) Statistically analyze Voltage along paths between plates, calculate average capacitance, and calculate confidence in average capacitance
-    1) Define statistical analysis methods to calculate average and variance
+    1) Define statistical analysis methods to calculate average and variance of voltage
     2) Analyze potential difference between the two plates
-        - test that potential between any two points is equivalent in the ideal case
-        - demonstrate that potential is no longer equivilent when d ~ sqrt(A)
-        - demonstrate that the variance in potential rises as d approaches sqrt(A)
-    3) Assume that the error in capacitance is related to the variance of voltage 
-        - demonstrate that as the variance of voltage increases the deviation from known finite case solutions increases
+        - picks X different combinations of start and stop coordinates on plate edges, calculates E dot dl, and evaluates average and variance of voltage.
+        - picks X different points on plate coordinate edges, and creates a straight line between each plate at that point to calculate E dot dl by, and evaluates average and variance along these paths as well.
     
