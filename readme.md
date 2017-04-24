@@ -42,6 +42,8 @@ This project consists of two parts:
         2) Mirror plate, seperate, and center
             - Determine X,Y position of plate elements to center it in x,y plane
             - Determine Z position of plates to center both in z dimension
-            - generate a 2d-tensor n by 3, where n is amount of elements to contain conductor and the 2nd dimension contains the x,y,z coordinates
+            - generate a 2d-tensor of size n by 4, 
+                - n is amount of elements to contain conductor
+                - 2nd dimension contains the id of the plate the element refers to as well as at element's x,y,z coordinates
     3) Integrate by summation
         - ![V = -\int_{+}^{-} \overrightarrow{E}*d\overrightarrow{l} = \int d\overrightarrow{l} * \int \rho(\overrightarrow{r}') * \frac{(\overrightarrow{r} - \overrightarrow{r}')}{|(\overrightarrow{r} - \overrightarrow{r}')|^3} * d\tau'  \propto Q](https://cloud.githubusercontent.com/assets/10381896/25315834/c2687750-2829-11e7-9740-15bf097ded52.gif)
