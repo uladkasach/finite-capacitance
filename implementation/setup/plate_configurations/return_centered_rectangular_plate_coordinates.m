@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%
 %% This function returns the XY coordinates for all elements in the conducting plate, centered around the center of the domain
 %%%%%%%%%%%%%%%%%
-function centered_XY_coordinates = return_centered_rectangular_plate_coordinates(center_xi, center_yi, Dx, Dy, plate_lx, plate_ly)
+function [centered_XY_coordinates, centered_XY_x_borders, centered_XY_y_borders] = return_centered_rectangular_plate_coordinates(center_xi, center_yi, Dx, Dy, plate_lx, plate_ly)
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,5 +53,11 @@ function centered_XY_coordinates = return_centered_rectangular_plate_coordinates
             centered_XY_coordinates(total_index, 2) = this_y_element;
         end
     end
+    
+    %%%%%%%%%%%%%%%%%%%%
+    %% Generate border coordinates holders. Passing borders in an array so as to make this approach generalizable to arbitrary shapes.
+    %%%%%%%%%%%%%%%%%%%%
+    centered_XY_x_borders = [plate_x_coordinates(1), plate_x_coordinates(size(plate_x_coordinates, 2))];
+    centered_XY_y_borders = [plate_y_coordinates(1), plate_y_coordinates(size(plate_y_coordinates, 2))];
     
 end

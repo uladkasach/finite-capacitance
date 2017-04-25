@@ -32,7 +32,8 @@ function electric_field = electric_field_at_position(position, centered_xy_coord
             %% Calculate component's electric field contribution
             %this_electric_field = electric_field_due_to_one_element(r, r_prime, q);
             relative_vector = r - r_prime;
-            relative_vector_in_physical_units = [relative_vector(1)*length_per_element(1), relative_vector(2)*length_per_element(2), relative_vector(3)*length_per_element(3)];
+            %relative_vector_in_physical_units = [relative_vector(1)*length_per_element(1), relative_vector(2)*length_per_element(2), relative_vector(3)*length_per_element(3)];
+            relative_vector_in_physical_units = relative_vector .* length_per_element;
             this_electric_field = (4*pi*e_not)^(-1) * q * relative_vector_in_physical_units * (magnitude_of_vector(relative_vector_in_physical_units))^(-3);
             
             if(xy_index == 1 && false)

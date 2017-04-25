@@ -21,7 +21,7 @@ This project consists of two parts:
     - e.g., capacitance at the edge of a capacitor may be different from capacitance at the center of the capacitor
     - i.e., when making an assumption of the charge density, we may be inaccurate resulting in a varying potential difference along a path between the two plates, resulting in a different capacitance.
     - Test:
-        - plot field lines to ensure E is being calculated correctly - completed - ![image](https://cloud.githubusercontent.com/assets/10381896/25362985/4e333576-2925-11e7-8cae-a1bec4309362.png)
+        - plot field lines to ensure E is being calculated correctly - [completed](https://github.com/uladkasach/Finite-Capacitance/tree/master/z_results/electric_field_plots)  ![image](https://cloud.githubusercontent.com/assets/10381896/25362985/4e333576-2925-11e7-8cae-a1bec4309362.png)
         - ensure that capacitance at center of plate is (e_0)*A/d
 2) Average the capacitance along all paths between plates to determine total capacitance 
     - calculate capacitance everywhere and then average it
