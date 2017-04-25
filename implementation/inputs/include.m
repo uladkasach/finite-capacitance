@@ -8,9 +8,9 @@ Lz = 0.02;
 %%%%%%%%%%%%%%%%%%%
 %% Define number of elements per dimension
 %%%%%%%%%%%%%%%%%%%
-Nx = 100; 
-Ny = 100;
-Nz = 1600;
+Nx = 1000; 
+Ny = 1000;
+Nz = 100; %% where second number is the z_directional_step_size_for_potential
 
 %%%%%%%%%%%%%%%%%%%%
 %% Define Conductor Plate
@@ -29,4 +29,5 @@ parallel_plates= true;
 opt_plot_field = false;
 field_plot_too_close_range = 30; 
 vectors_in_electric_field_plot = 1000;
+
 

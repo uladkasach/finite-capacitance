@@ -1,5 +1,7 @@
 # Finite-Capacitance
 
+
+
 ### Background:
 Capacitance of parallel plate capacitors is easily calculable for the domains where the plate seperation is much smaller than the area of the plates, `s << sqrt(A)`. For domains where `s` is comparable to `sqrt(A)` edge effects and fringe feilds affect the capacitance in a non negligible way. When the plate area is much larger than seperation distance, the electric field between the two plates is highly uniform resulting in a capacitance very close to the ideal case where edge effects do not exist. In this case, the charge distribution along the plates is very uniform.
 
@@ -20,9 +22,13 @@ This project consists of two parts:
 1) Calculate capacitance along one path between plates
     - e.g., capacitance at the edge of a capacitor may be different from capacitance at the center of the capacitor
     - i.e., when making an assumption of the charge density, we may be inaccurate resulting in a varying potential difference along a path between the two plates, resulting in a different capacitance.
-    - Test:
-        - plot field lines to ensure E is being calculated correctly - [completed](https://github.com/uladkasach/Finite-Capacitance/tree/master/z_results/electric_field_plots)  ![image](https://cloud.githubusercontent.com/assets/10381896/25362985/4e333576-2925-11e7-8cae-a1bec4309362.png)
-        - ensure that capacitance at center of plate is (e_0)*A/d
+    - Implementations:
+        1) Calculate potential difference by taking line integral of electric field
+            - Test:
+                - plot field lines to ensure E is being calculated correctly - [completed](https://github.com/uladkasach/Finite-Capacitance/tree/master/z_results/electric_field_plots)  ![image](https://cloud.githubusercontent.com/assets/10381896/25362985/4e333576-2925-11e7-8cae-a1bec4309362.png)
+            - ensure that capacitance at center of plate is (e_0)*A/d
+                - [issue 1, in progress](https://github.com/uladkasach/Finite-Capacitance/issues/1) 
+                    - found that discretization results in an exponential explosion near boundary, as there are points at which plate thickness is comparable to the distance at which E is calculated.
 2) Average the capacitance along all paths between plates to determine total capacitance 
     - calculate capacitance everywhere and then average it
     - Test: 
@@ -56,8 +62,14 @@ This project consists of two parts:
             - generate a 2d-tensor of size n by 4, 
                 - n is amount of elements to contain conductor
                 - 2nd dimension contains the id of the plate the element refers to as well as at element's x,y,z coordinates
-    3) Integrate by summation
-        - ![V = -\int_{+}^{-} \overrightarrow{E}*d\overrightarrow{l} = \int d\overrightarrow{l} * \int \rho(\overrightarrow{r}') * \frac{(\overrightarrow{r} - \overrightarrow{r}')}{|(\overrightarrow{r} - \overrightarrow{r}')|^3} * d\tau'  \propto Q](https://cloud.githubusercontent.com/assets/10381896/25315834/c2687750-2829-11e7-9740-15bf097ded52.gif)
+    3) Calculate Potential
+        -  Using Electric Field
+            - Integration by summation : ![V = -\int_{+}^{-} \overrightarrow{E}*d\overrightarrow{l} = \int d\overrightarrow{l} * \int \rho(\overrightarrow{r}') * \frac{(\overrightarrow{r} - \overrightarrow{r}')}{|(\overrightarrow{r} - \overrightarrow{r}')|^3} * d\tau'  \propto Q](https://cloud.githubusercontent.com/assets/10381896/25315834/c2687750-2829-11e7-9740-15bf097ded52.gif)
+            1) calculate electric field at any point
+            2) plot electric fields and capacitor to verify that electric fields are calculated properly
+            3) calculate E dot dl along a path between any two points on the edges of each capacitor
+        -  Explicitly 
+            - Integration by summation : ![V = -\int_{+}^{-} \overrightarrow{E}*d\overrightarrow{l} = \int d\overrightarrow{l} * \int \rho(\overrightarrow{r}') * \frac{(\overrightarrow{r} - \overrightarrow{r}')}{|(\overrightarrow{r} - \overrightarrow{r}')|^3} * d\tau'  \propto Q](https://cloud.githubusercontent.com/assets/10381896/25315834/c2687750-2829-11e7-9740-15bf097ded52.gif)
             1) calculate electric field at any point
             2) plot electric fields and capacitor to verify that electric fields are calculated properly
             3) calculate E dot dl along a path between any two points on the edges of each capacitor

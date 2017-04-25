@@ -19,6 +19,12 @@ function potential = potential_along_shortest_path_between(position_start, posit
     slope_vector = motion_vector / motion_vector(3);
     
     %%%%
+    %% Increase slope per itteration to hop X elements in z direction per itteration --- useless
+    %%%%
+    z_directional_step_size_for_potential = 1;  
+    slope_vector = z_directional_step_size_for_potential * slope_vector;
+    
+    %%%%
     %% Enumerate Positions due to slope
     %%%%
     positions_along_path = [position_start];
