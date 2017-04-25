@@ -1,25 +1,25 @@
 %%%%%%%%%%%%%%%%%%%
 %% Define Domain Dimensions in Meters
 %%%%%%%%%%%%%%%%%%%
-Lx = 0.5; %%  50 cm
-Ly = 0.5;
-Lz = 0.0002;
+Lx = 5; %%  50 cm
+Ly = 5;
+Lz = 0.02;
 
 %%%%%%%%%%%%%%%%%%%
 %% Define number of elements per dimension
 %%%%%%%%%%%%%%%%%%%
-Nx = 500; 
-Ny = 500;
-Nz = 4000;
+Nx = 100; 
+Ny = 100;
+Nz = 1600;
 
 %%%%%%%%%%%%%%%%%%%%
 %% Define Conductor Plate
 %%%%%%%%%%%%%%%%%%%%
 plate_type = 'rectangle';
-plate_lx = 0.3; %% 30 cm
-plate_ly = 0.3;
+plate_lx = 4.9; %% 30 cm
+plate_ly = 4.9;
 plate_lz = 0; %% 0 results in a 1 element thick plate
-plate_seperation = 0.00005; %% 
+plate_seperation = 0.005; %% 
 parallel_plates= true;
  
  

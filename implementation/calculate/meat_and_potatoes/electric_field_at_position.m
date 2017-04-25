@@ -22,12 +22,7 @@ function electric_field = electric_field_at_position(position, centered_xy_coord
             r_prime = [this_x, this_y, this_z];
             
             %% Get charge inside of discreticed conductor element contributing to the field
-            if(this_plate_id == 1)
-                q = 1;
-            end
-            if(this_plate_id == 2)
-                q = -1;
-            end
+            q = charge_at_position(r_prime, this_plate_id);
             
             %% Calculate component's electric field contribution
             %this_electric_field = electric_field_due_to_one_element(r, r_prime, q);

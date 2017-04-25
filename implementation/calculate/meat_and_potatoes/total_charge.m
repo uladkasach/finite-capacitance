@@ -11,12 +11,11 @@ function total_charge = total_charge(centered_xy_coordinates, centered_z_coordin
             this_plate_id = 1;
         end
         for xy_index = 1:size(centered_xy_coordinates, 1)
-            if(this_plate_id == 1)
-                q = 1;
-            end
-            if(this_plate_id == 2)
-                q = -1;
-            end
+            this_x = centered_xy_coordinates(xy_index, 1);
+            this_y = centered_xy_coordinates(xy_index, 2);
+            r_prime = [this_x, this_y, this_z];
+            
+            q = charge_at_position(r_prime, this_plate_id);
     
             total_charge(this_plate_id) = total_charge(this_plate_id) + q; 
         end

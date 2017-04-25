@@ -70,7 +70,11 @@ function potential = potential_along_shortest_path_between(position_start, posit
     %%%%%%%%%%%%%%%%
     total_potential = 0;
     last_position = [];
-    for position_index = 1:(size(positions_along_path, 1)-1) %% -1 as we do not want to calculate E at the conductor
+    utilized_positions = [];
+    potentials = [];
+    fields = [];
+    too_close_offset = 0;
+    for position_index = 1+too_close_offset:(size(positions_along_path, 1)-1-too_close_offset) %% -1 as we do not want to calculate E at the conductor
         this_position = positions_along_path(position_index, :);
         
         if(mod(position_index, 10) == 0)
@@ -97,10 +101,20 @@ function potential = potential_along_shortest_path_between(position_start, posit
         cosine_similarity = cosine_similarity_between_two_vectors(electric_field, dl); %% Method 2
         
         this_potential = magnitude_of_vector(electric_field) * magnitude_of_vector(dl) * cosine_similarity;
-        fprintf('at (%d, %d, %d) E is (%8.3E, %8.3E, %8.8E), dl = (%8.3E, %8.3E, %8.3E), V = %8.8E \n', this_position, electric_field, dl, this_potential);
+        fprintf('at (%d, %d, %d) E is (%8.3E, %8.3E, %8.8E), dl = (%8.3E, %8.3E, %8.3E), cs = %f, V = %8.8E \n', this_position, electric_field, dl, cosine_similarity, this_potential);
         total_potential = this_potential + total_potential;
+        utilized_positions = [utilized_positions; this_position];
+        potentials = [potentials; this_potential];
+        fields = [fields; electric_field];
         last_position = this_position;
     end
+    scatter(utilized_positions(:, 3), (fields(:, 3)));
+    title('Z position vs E_z');
+    xlabel('Z position (in elements)');
+    ylabel('E_z, electric field in z direction');
+    
+    
+    
     
     potential = -1 * total_potential;
 end

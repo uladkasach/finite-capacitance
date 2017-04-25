@@ -69,6 +69,15 @@ end
 
 
 
+%%%%%%%%%%%%%%%%
+%% Calculate Uniform Charge Distribution for Domain
+%%%%%%%%%%%%%%%%%
+%% Make Q = 1/(number of charge carrying elements)
+%% This is desired so that regardless of the number of elements as conductor, total charge will be uniform.
+%% This does not matter in capacitance calculation but helps in comparing E and V between different Nx, Ny, Nz and plate thicknesses
+global charge_density_distribution;
+charge_density_distribution = 1 / (size(centered_xy_coordinates, 1) * size(centered_z_coordinates, 1)); 
+
 %%%%%%%%%%%%%%%%%
 %% Calculate total charge for domain
 %%%%%%%%%%%%%%%%%
