@@ -114,7 +114,8 @@ function potential = potential_along_shortest_path_between(position_start, posit
         fields = [fields; electric_field];
         last_position = this_position;
     end
-    scatter(utilized_positions(:, 3), (fields(:, 3)));
+    %scatter(utilized_positions(:, 3), (fields(:, 3)));
+    scatter(utilized_positions(:, 3), log10(fields(:, 3)));
     title('Z position vs E_z');
     xlabel('Z position (in elements)');
     ylabel('E_z, electric field in z direction');

@@ -29,9 +29,10 @@ run('setup/initialize_domain.m');
 run('setup/initialize_conductor.m'); 
 run('setup/clean_workspace.m'); 
 
-
+tic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Calculate
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fprintf('\n--------------------Calculate-------------------\n')
 run('calculate/include.m'); 
+toc

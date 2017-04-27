@@ -8,9 +8,9 @@ Lz = 0.02;
 %%%%%%%%%%%%%%%%%%%
 %% Define number of elements per dimension
 %%%%%%%%%%%%%%%%%%%
-Nx = 1000; 
-Ny = 1000;
-Nz = 100; %% where second number is the z_directional_step_size_for_potential
+Nx = 6000; 
+Ny = 6000;
+Nz = 200; %% where second number is the z_directional_step_size_for_potential
 
 %%%%%%%%%%%%%%%%%%%%
 %% Define Conductor Plate
