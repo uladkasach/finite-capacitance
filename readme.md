@@ -19,7 +19,7 @@ This project consists of two parts:
     - It may be possible to solve this as an optimization problem utilizing local search methods such as stochastic gradient descent, stocastic beam search, and other numerical solutions to optimization problems.
 
 ### Plan:
-1) Calculate capacitance along one path between plates
+1) Calculate capacitance along one path between plates [ Completed ]
     - e.g., capacitance at the edge of a capacitor may be different from capacitance at the center of the capacitor
     - i.e., when making an assumption of the charge density, we may be inaccurate resulting in a varying potential difference along a path between the two plates, resulting in a different capacitance.
     - Implementations:
@@ -27,9 +27,16 @@ This project consists of two parts:
             - Test:
                 - plot field lines to ensure E is being calculated correctly - [completed](https://github.com/uladkasach/Finite-Capacitance/tree/master/z_results/electric_field_plots)  ![image](https://cloud.githubusercontent.com/assets/10381896/25362985/4e333576-2925-11e7-8cae-a1bec4309362.png)
             - ensure that capacitance at center of plate is (e_0)*A/d
-                - [issue 1, in progress](https://github.com/uladkasach/Finite-Capacitance/issues/1) 
-                    - found that discretization results in an exponential explosion near boundary, as there are points at which plate thickness is comparable to the distance at which E is calculated.
-2) Average the capacitance along all paths between plates to determine total capacitance 
+                - [issue 1, solved](https://github.com/uladkasach/Finite-Capacitance/issues/1) 
+        2) Calculate potential difference explicitly
+            - [issue 2, solved](https://github.com/uladkasach/Finite-Capacitance/issues/2)
+            - ensure that capacitance at center of plate is (e_0)*A/d
+    - Summary:
+        - Large discretization is required in the XY plane in order to accuratly model the electric field at |r - r'| -> 0.
+            - Calculating potential using `E dot l` requires less discretization; but, takes overall longer due to requiring many calculations along the path l
+            - Calculating potential explicitly, relative to infinity, requires less time; but, requires sizably more memory space 
+                - More memory space is required due to implementation enabling arbitrary XY shapes of conductors - can be reduced if assuming rectangular plates
+2) Average the capacitance along all paths between plates to determine total capacitance  [ In Progress ]
     - calculate capacitance everywhere and then average it
     - Test: 
         - ensure that capacitance for case d << sqrt(A) is (e_0)*A/d
@@ -46,7 +53,7 @@ This project consists of two parts:
             - e.g., charges tend to aggregate at sharp points and at edgesf
     
 ### Implementation:
-1) Calculate Capacitance along one path
+1) Calculate Capacitance along one path [ Completed ]
     1) Define Domain
         - Lx, Ly, Lz = length in x, y, & z in meters
         - Nx, Ny, Nz = # discrete elements in x, y, &z
@@ -69,12 +76,11 @@ This project consists of two parts:
             2) plot electric fields and capacitor to verify that electric fields are calculated properly
             3) calculate E dot dl along a path between any two points on the edges of each capacitor
         -  Explicitly 
-            - Integration by summation : ![V = -\int_{+}^{-} \overrightarrow{E}*d\overrightarrow{l} = \int d\overrightarrow{l} * \int \rho(\overrightarrow{r}') * \frac{(\overrightarrow{r} - \overrightarrow{r}')}{|(\overrightarrow{r} - \overrightarrow{r}')|^3} * d\tau'  \propto Q](https://cloud.githubusercontent.com/assets/10381896/25315834/c2687750-2829-11e7-9740-15bf097ded52.gif)
-            1) calculate electric field at any point
-            2) plot electric fields and capacitor to verify that electric fields are calculated properly
-            3) calculate E dot dl along a path between any two points on the edges of each capacitor
+            - Integration by summation : ![V = \int  \frac{\rho(\overrightarrow{r}')}{|(\overrightarrow{r} - \overrightarrow{r}')|} * d\tau'  \propto Q](https://cloud.githubusercontent.com/assets/10381896/25760164/7ec83dc2-31a3-11e7-88ac-24674fb4f37d.gif)
+            1) calculate potential at any point
+            2) calculate the difference in potential between two points
     4) Relate potential to capacitance by C = Q/V and Q = integral rho * dtau
-2) Statistically analyze Voltage along paths between plates, calculate average capacitance, and calculate confidence in average capacitance
+2) Statistically analyze Voltage along paths between plates, calculate average capacitance, and calculate confidence in average capacitance [ In Progress ]
     1) Define statistical analysis methods to calculate average and variance of voltage
     2) Analyze potential difference between the two plates
         - picks X different combinations of start and stop coordinates on plate edges, calculates E dot dl, and evaluates average and variance of voltage.
